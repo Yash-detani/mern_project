@@ -1,13 +1,18 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import UserRegister from './UserRegister'
+import UserLogin from './UserLogin'
+import PartnerRegister from './PartnerRegister'
+import PartnerLogin from './PartnerLogin'
+
 const AppRoutes = () => {
   return (
     <Router>
         <Routes>
-            <Route path="/user/register" element={<h1>User Register</h1>} />
-            <Route path="/user/login" element={<h1>User Login</h1>} />
-            <Route path="/food-partner/register" element={<h1>Partner Login</h1>} />
-            <Route path="/food-partner/login" element={<h1>Partner Register</h1>} />
+            <Route path="/user/register" element={<UserRegister/>} />
+            <Route path="/user/login" element={<UserLogin/>} />
+            <Route path="/food-partner/register" element={<PartnerRegister/>} />
+            <Route path="/food-partner/login" element={<PartnerLogin/>} />
         </Routes>
     </Router>
 
