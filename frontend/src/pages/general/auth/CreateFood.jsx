@@ -2,7 +2,7 @@ import React from 'react'
 
 const CreateFood = () => {
   return (
-    <div> CreateFoodPartner </div>
+    <div> CreateFood </div>
   )
 }
 

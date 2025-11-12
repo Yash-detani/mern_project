@@ -12,13 +12,14 @@ const PartnerLogin = () => {
       const email = e.target.email.value;
       const password = e.target.password.value;
 
-      const response = await axios.post("http://localhost:3000/api/auth/partner/login", {
+      const response = await axios.post("http://localhost:3000/api/auth/food-partner/login", {
           email ,
           password},{
             withCredentials: true
           })
           
-
+      console.log(response.data);
+      navigate("/create-food");
         
       }
   return (
@@ -32,7 +33,7 @@ const PartnerLogin = () => {
           </div>
         </div>
 
-        <form className="auth-form" onSubmit={(e)=>e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <div className="field">
             <label htmlFor="email">Email</label>
             <input id="email" name="email" className="input" placeholder="partner@example.com" />

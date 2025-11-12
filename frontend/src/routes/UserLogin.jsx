@@ -36,7 +36,7 @@ const UserLogin = () => {
           </div>
         </div>
 
-        <form className="auth-form" onSubmit={(e)=>e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <div className="field">
             <label htmlFor="email">Email</label>
             <input id="email" name="email" className="input" placeholder="you@example.com" />
