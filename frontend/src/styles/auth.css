@@ -12,6 +12,8 @@ body {
   -moz-osx-font-smoothing:grayscale;
 }
 
+
+
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -69,7 +71,7 @@ body {
 /* Profile specific styles (refined to match screenshot layout) */
 .profile-card{padding:22px 18px;max-width:360px;margin:0 auto;border-radius:18px}
 .profile-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
-.profile-avatar{width:72px;height:72px;border-radius:999px;background:var(--primary);color:var(--primary-contrast);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;border:2px solid rgba(100,116,139,0.06);box-shadow:var(--shadow)}
+.profile-avatar{object-fit: cover;width:72px;height:72px;border-radius:999px;background:var(--primary);color:var(--primary-contrast);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;border:2px solid rgba(100,116,139,0.06);box-shadow:var(--shadow)}
 .profile-meta{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .pill{padding:10px 14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(100,116,139,0.06);font-weight:600;color:var(--text);min-width:140px;text-align:left}
 .pill.muted{padding:6px 10px;background:transparent;color:var(--muted);border:1px solid rgba(100,116,139,0.04);font-weight:600;font-size:13px}
@@ -87,11 +89,13 @@ body {
 .profile-inner{background:rgba(255,255,255,0.01);border-radius:14px;padding:26px;border:1px solid rgba(100,116,139,0.05);margin-bottom:22px}
 
 /* Panel that wraps the grid to create another void/space below the inner card */
-.video-panel{border-radius:14px;padding:18px;background:rgba(15,23,36,0.015)}
+.video-panel{border-radius:14px;padding:10px;
+  display: flex;height: 500px;background:rgba(15,23,36,0.015)}
 
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:0;border-radius:10px;padding:18px;border:1px solid rgba(100,116,139,0.04);background:transparent}
+.video-grid{
+display:grid;margin-left: -29px;border-radius:10px;padding:18px;border:1px solid rgba(100,116,139,0.04);background:transparent}
 
-.video-card{background:linear-gradient(180deg, rgba(7,14,24,0.45), rgba(7,14,24,0.5));aspect-ratio:1/1;padding:14px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;border:1px solid rgba(3,7,18,0.6);min-height:120px;box-shadow: inset 0 1px 0 rgba(255,255,255,0.02)}
+.video-card{background:linear-gradient(180deg, rgba(7,14,24,0.45), rgba(7,14,24,0.5));aspect-ratio:1/1;padding:0px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;border:1px solid rgba(3,7,18,0.6);min-height:120px;box-shadow: inset 0 1px 0 rgba(255,255,255,0.02)}
 
 /* Outer framed container to match screenshot */
 .profile-outer{max-width:420px;margin:20px auto;background:transparent;border-radius:24px;padding:22px}
@@ -111,7 +115,7 @@ body {
 
 
 @media (max-width:520px){
-  .video-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .video-grid{grid-template-columns:repeat(2,1fr);}
   .profile-avatar{width:60px;height:60px}
   .pill{min-width:110px}
   .profile-inner{padding:14px}
@@ -120,4 +124,4 @@ body {
 
 /* Use 2 columns by default to match screenshot proportions */
 .video-grid{grid-template-columns:repeat(2,1fr);padding:12px}
-.video-card{aspect-ratio:1/1;padding:12px;min-height:120px}
+.video-card{aspect-ratio:1/1;padding:2px;min-height:120px}
