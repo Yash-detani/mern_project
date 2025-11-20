@@ -1,0 +1,12 @@
+@import '../../styles/variables.css';
+
+.saved-root{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--bg); color:var(--text); padding-bottom:80px }
+.saved-empty{ text-align:center }
+.saved-emoji{ font-size:48px; margin-bottom:8px }
+.saved-cta{ display:inline-block; margin-top:12px; padding:10px 16px; border-radius:8px; background:var(--primary); color:#fff; text-decoration:none }
+
+/* reuse bottom nav style */
+.bottom-nav{ position:fixed; left:0; right:0; bottom:0; height:60px; display:flex; gap:30px; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.55); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,0.04) }
+.bottom-nav-item{ color:#fff; text-decoration:none; display:flex; flex-direction:column; align-items:center; font-size:12px }
+.bottom-nav-item .nav-label{ margin-top:4px }
+.bottom-nav-item.active{ color:var(--primary) }

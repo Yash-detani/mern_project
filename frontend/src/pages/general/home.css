@@ -31,22 +31,28 @@
   right: 0;
   bottom: 40px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
   padding: 0 16px;
   gap: 10px;
   pointer-events: none; /* make overlay not intercept scroll; buttons will override */
 }
+.reel-left { max-width:70%; pointer-events: auto; display:flex; flex-direction:column; gap:10px }
+.reel-right { width:64px; display:flex; flex-direction:column; align-items:center; gap:18px; pointer-events: auto; margin-right:6px }
+.side-icon{ display:flex; flex-direction:column; align-items:center; color:#fff; font-size:12px }
+.side-icon-graphic{ width:44px; height:44px; display:flex; align-items:center; justify-content:center }
+.side-icon-count{ margin-top:6px; font-size:12px; color:#ddd }
 .reel-desc {
   max-width: 880px;
   color: #c7ff00d1;
   font-size: 16px;
-  text-align: center;
+  text-align: left;
   line-height: 1.2;
   pointer-events: auto;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -68,6 +74,14 @@
 
 /* Small screens - move overlay slightly up so it doesn't overlap nav */
 @media (max-width:520px){
-  .reel-overlay{ bottom: 28px; }
+  .reel-overlay{ bottom: 78px; padding: 0 10px }
   .reel-desc{ font-size:14px }
+  .reel-right{ width:48px; gap:12px }
+  .side-icon-graphic{ width:36px; height:36px }
 }
+
+/* Bottom navigation */
+.bottom-nav{ position:fixed; left:0; right:0; bottom:0; height:66px; display:flex; gap:30px; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.6); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,0.04) }
+.bottom-nav-item{ color:#fff; text-decoration:none; display:flex; flex-direction:column; align-items:center; font-size:12px }
+.bottom-nav-item .nav-label{ margin-top:6px; text-transform:lowercase }
+.bottom-nav-item.active{ color:var(--primary) }
