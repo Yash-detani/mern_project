@@ -1,0 +1,55 @@
+@import '../../../styles/variables.css';
+
+/* Mobile-first styles for CreateFood page */
+.create-food-page{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:18px 12px;
+  background:var(--bg);
+}
+
+.create-food-card{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(100,116,139,0.06);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.cf-title{margin:0 0 4px 0;font-size:18px;color:var(--text)}
+
+.field{display:flex;flex-direction:column;gap:8px}
+.label{font-size:13px;color:var(--muted)}
+
+.input{padding:10px 12px;border-radius:10px;background:var(--input-bg);border:1px solid rgba(15,23,36,0.06);color:var(--text);font-size:14px}
+.textarea{resize:vertical}
+
+.video-input-wrap{display:flex;flex-direction:column;gap:8px}
+.input-file{display:none}
+
+.video-input-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(100,116,139,0.06);color:var(--text);cursor:pointer}
+.video-input-btn svg{display:block;width:18px;height:18px;color:var(--muted)}
+.video-input-text{font-size:14px;color:var(--text);font-weight:600}
+.video-input-btn:hover{background:linear-gradient(180deg, rgba(255,255,255,0.03), transparent)}
+.video-info{font-size:13px;color:var(--muted);padding:8px 10px;border-radius:8px;background:rgba(15,23,36,0.02);border:1px solid rgba(100,116,139,0.04)}
+
+/* Video preview */
+.video-preview{width:100%;border-radius:8px;margin-top:8px;max-height:280px;background:#000;object-fit:cover;border:1px solid rgba(0,0,0,0.4)}
+
+.actions{display:flex;justify-content:flex-end}
+.btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
+.btn-primary{background:var(--primary);color:var(--primary-contrast)}
+
+/* Larger screens */
+@media (min-width:720px){
+  .create-food-page{padding:32px}
+  .create-food-card{padding:22px}
+  .video-info{font-size:14px}
+}
