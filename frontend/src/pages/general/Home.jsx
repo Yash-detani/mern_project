@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './home.css'
 
-const Icon = ({ children, label, count }) => (
-  <div className="side-icon" title={label}>
+const Icon = ({ children, label, count, ...rest }) => (
+  <div className="side-icon" title={label} {...rest}>
     <div className="side-icon-graphic">{children}</div>
     {typeof count !== 'undefined' && <div className="side-icon-count">{count}</div>}
   </div>
@@ -24,6 +24,31 @@ const Reel = ({ item, isActive, onPlay }) => {
     }
   }, [isActive]);
 
+  async function likeVideo(item){
+    const response = await axios.post("http://localhost:3000/api/food/like", {foodId: item._id}, {withCredentials: true});
+
+    if(response.data.like){
+      console.log("Video liked");
+      Reels((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount + 1} : v));
+    }
+    else{
+      console.log("Video unliked");
+      ((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount - 1} : v));
+    }
+  }
+
+  async function bookmarkVideo(item) {
+    const response = await axios.post("http://localhost:3000/api/food/save", { foodId: item._id }, { withCredentials: true });
+
+    if (response.data.save) {
+      console.log("Video saved");
+      // reels((prev) => prev.map((v) => v._id === item._id ? { ...v, saveCount: v.saveCount + 1 } : v));
+    } else {
+      console.log("Video unsaved");
+      // reels((prev) => prev.map((v) => v._id === item._id ? { ...v, saveCount: v.saveCount - 1 } : v));
+    }
+  }
+  
   return (
     <div className="reel" onClick={onPlay}>
       {item.videos ? (
@@ -46,10 +71,10 @@ const Reel = ({ item, isActive, onPlay }) => {
           <Link className="reel-button" to={"/food-partner/" + item.foodPartner} aria-label='Visit Store'>visit store</Link>
         </div>
         <div className="reel-right">
-          <Icon label="Likes" count={item.likeCount}>
+          <Icon onClick={()=>likeVideo(item)}label="Likes" count={item.likeCount>0 ? item.likeCount : 0}>
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-4.35-9.2-6.3C.9 12.84 2.3 7.5 6 5.7 8.1 4.6 10.6 5 12 6.6c1.4-1.6 3.9-2 6-1.1 3.7 1.8 5.1 7.1 3.2 9.99C19 16.65 12 21 12 21z" stroke="#fff" strokeWidth="1.2" fill="none"/></svg>
           </Icon>
-          <Icon label="Save">
+          <Icon onClick={() => bookmarkVideo(item)} label="Save" count = {item.saveCount>0 ? item.saveCount : 0}>
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2h12v18l-6-3-6 3V2z" stroke="#fff" strokeWidth="1.2" fill="none"/></svg>
           </Icon>
           <Icon label="Comments" count={item.comments ? item.comments.length : 0}>
@@ -68,6 +93,7 @@ const Home = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/api/food", { withCredentials: true })
       .then(response => {
+        console.log(response.data);
         setReels(response.data.foodItems);
       });
   }, []);

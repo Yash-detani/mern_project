@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './saved.css'
+import axios from 'axios'
 
 const Saved = () => {
+  const [videos, setVideos] = useState([]);
+  const videoRef = useRef(new Map());
+
+  useEffect(() => { 
+
+    axios.get("http://localhost:3000/api/food/save", {withCredentials: true})
+
+    .then(response => {
+      const savedFoods = response.data.savedFoods.map((item) => ({
+      _id: item.food._id,
+      video: item.food.video,
+      description: item.food.description,
+      likeCount: item.food.likeCount,
+      saveCount: item.food.saveCount,
+      commentCount: item.food.commentCount
+    }))
+
+    setVideos(savedFoods);
+  })
+
+  }, [])
+
+   
   return (
     <div className="saved-root">
       <div className="saved-empty">

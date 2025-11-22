@@ -8,7 +8,6 @@ const likeModel = require("../models/likes.model");
 
 const saveModel = require("../models/save.model");
 
-const { findByIdAndUpdate } = require('../models/foodpartner.model');
 
 async function createFood(req,res){
 
@@ -37,23 +36,26 @@ async function getFoodItems(req,res){
 }
 
 async function likeFoodItem(req, res) {
-    const {foodId} = req.body;
+    const { foodId } = req.body;
     const user = req.user;
+
     
     const isAlreadyLiked = await likeModel.findOne({
         user: user._id,
-        food:foodId
+        food: foodId
     })
 
-    await foodModel.findByIdAndUpdate(foodId, {
-        $inc :{likeCount: -1}
-    })
-
+    
     if(isAlreadyLiked){
         await likeModel.deleteOne({
         user: user._id,
         food:foodId
         })
+
+        await foodModel.findByIdAndUpdate(foodId, {
+        $inc :{likeCount: -1}
+    })
+
         return res.status(200).json({
             message: "Food unliked successfully"
         })
@@ -86,40 +88,59 @@ async function saveFoodItem(req, res) {
         food:foodId
     })
 
-    await foodModel.findByIdAndUpdate(foodId, {
-        $inc :{saveCount: -1}
-    })
+    
 
     if(isAlreadySaved){
         await saveModel.deleteOne({
         user: user._id,
         food:foodId
         })
+
+        await foodModel.findByIdAndUpdate(foodId, {
+        $inc :{saveCount: -1}
+    })
+
         return res.status(200).json({
             message: "Food unsaved successfully"
         })
     }
 
-    const like = await saveModel.create({
+    const save = await saveModel.create({
         user: user._id,
         food: foodId
         
     })
 
     await foodModel.findByIdAndUpdate(foodId, {
-        $inc :{likeCount: 1}
+        $inc :{saveCount: 1}
     })
 
     res.status(201).json({
         message: "Food saved successfully",
-        like
+        save
     })
 
 
+}
+
+async function getSavedFoodItems(req, res) {
+    const user = req.user;
+    const savedFoods = await saveModel.find({ user: user._id }).populate('food');
+
+    if (!savedFoods || savedFoods.length === 0) {
+        return res.status(200).json({
+            message: "No saved food items found"
+        });
+    }
+    res.status(200).json({
+        message: "Saved food items fetched successfully",
+        savedFoods
+    })
 }
 module.exports = {
     createFood,
     getFoodItems,
     likeFoodItem,
-    saveFoodItem
+    saveFoodItem,
+    getSavedFoodItems
 };
