@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/auth.css'
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 const UserLogin = () => {
 
@@ -23,7 +23,7 @@ const UserLogin = () => {
 
         console.log(response.data);
 
-        navigate("/");
+        navigate("/home");
   }
   return (
     <div className="auth-page">
@@ -54,6 +54,9 @@ const UserLogin = () => {
 
         <div className="divider" />
         <div className="help">Or continue with a social account (not wired)</div>
+        <div style={{marginTop:12, textAlign:'center'}}>
+          <Link to="/food-partner/login" className="muted-link">Are you a partner? Sign in</Link>
+        </div>
       </div>
     </div>
   )

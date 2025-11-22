@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/auth.css'
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
@@ -74,6 +74,9 @@ const PartnerRegister = () => {
 
         <div className="divider" />
         <div className="help">We'll review your application and contact you via email.</div>
+        <div style={{marginTop:12, textAlign:'center'}}>
+          <Link to="/user/register" className="muted-link">Register as a user</Link>
+        </div>
       </div>
     </div>
   )

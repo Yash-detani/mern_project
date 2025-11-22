@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/auth.css'
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 const PartnerLogin = () => {
 
@@ -51,6 +51,9 @@ const PartnerLogin = () => {
 
         <div className="divider" />
         <div className="help">Need help? Contact support.</div>
+        <div style={{marginTop:12, textAlign:'center'}}>
+          <Link to="/user/login" className="muted-link">Sign in as user</Link>
+        </div>
       </div>
     </div>
   )

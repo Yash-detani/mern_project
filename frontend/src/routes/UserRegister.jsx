@@ -29,7 +29,7 @@ const UserRegister = () => {
 
         console.log(response.data);
 
-        navigate("/");
+        navigate("/home");
 }
   return (
     <div className="auth-page">
@@ -65,6 +65,9 @@ const UserRegister = () => {
 
         <div className="divider" />
         <div className="help">By continuing you agree to our Terms of Service and Privacy Policy.</div>
+        <div style={{marginTop:12, textAlign:'center'}}>
+          <Link to="/food-partner/register" className="muted-link">Register as a partner</Link>
+        </div>
       </div>
     </div>
   )
